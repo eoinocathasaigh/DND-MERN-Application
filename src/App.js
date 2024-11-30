@@ -1,23 +1,25 @@
-import logo from './DnDLogo.svg';
 import './App.css';
+import Character from './components/Character';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NavigationBar from './components/NavBar';
+import Combat from './components/Combat';
+import GeneralInfo from './components/GeneralInfo';
+import SessionTracker from './components/SessionTracker';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to my DnD app<br></br> A hub with some basic tools to do with the famous table top game
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/GeneralInfo" element={<GeneralInfo/>} />
+          <Route path="/Character" element={<Character/>} />
+          <Route path="/SessionTracker" element={<SessionTracker/>} />
+          <Route path="/Combat" element={<Combat/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
