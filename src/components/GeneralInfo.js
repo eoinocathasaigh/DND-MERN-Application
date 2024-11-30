@@ -4,7 +4,6 @@ const GeneralInfo = () => {
   return (
     <div>
       <h1>General Info Page</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
     </div>
   );
 }
