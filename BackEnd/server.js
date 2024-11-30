@@ -30,7 +30,7 @@ const sessionSchema = new mongoose.Schema({
 });
 
 //Making the session model & adding to it
-const sessionModel = new mongoose.model('mySessions', sessionSchema);
+const sessionModel = new mongoose.model('sessionNotes', sessionSchema);
 //Allow us to parse json out of a http request
 const bodyParser = require('body-parser');
 const { Navigate } = require('react-router-dom');
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     console.log(req.body.title);
-    res.send('Movie Added');
+    res.send('Session Added');
 });
 
 //Handling sending back data when user goes to api/movies
