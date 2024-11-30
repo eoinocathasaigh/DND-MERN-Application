@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/GeneralInfo" element={<GeneralInfo/>} />
           <Route path="/Character" element={<Character/>} />
-          <Route path="/SessionTracker" element={<SessionTracker/>} />
+          <Route path="/Sessions" element={<SessionTracker/>} />
           <Route path="/Combat" element={<Combat/>} />
         </Routes>
       </Router>

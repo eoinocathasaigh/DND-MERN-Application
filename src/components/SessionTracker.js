@@ -20,13 +20,7 @@ const SessionTracker = ()=>{
           }
         )
   }
-    //Http work can be done through this method - Needs to be imported first above
-    //Allows us to synchronize with an external system
     useEffect(()=>{
-        //Makes http request with the get method
-        //This is the exact same as previous way except we're getting it from an api
-        //Done in the background - app doesnt hang
-        //Result is a promise - need to put a .then() and .catch() - its an asynchronous request
         Reload();
       },[] // - Doing this calms the array to stop it from being called multiple times
     );
