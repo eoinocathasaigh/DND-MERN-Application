@@ -31,4 +31,44 @@ const sessionSchema = new mongoose.Schema({
 
 //Making the session model & adding to it
 const sessionModel = new mongoose.model('mySessions', sessionSchema);
+//Allow us to parse json out of a http request
+const bodyParser = require('body-parser');
+const { Navigate } = require('react-router-dom');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+    console.log(req.body.title);
+    res.send('Movie Added');
+});
+
+//Handling sending back data when user goes to api/movies
+app.get('/api/SessionTracker', async(req, res) => {
+    //Await will basically prevent code from going any
+    //further until this is completed
+    const sessions = await sessionModel.find({});
+  
+    //This sends back the following:
+    //- A status code denoting success
+    //- The movies data in the form of json
+    res.status(200).json({mySessions:sessions});
+});
+  
+  //Method for sending data back to server
+  //This will basicaslly listen constantly for the response being sent back and will display the appropriate message
+app.post('/api/SessionTracker', async(req, res)=>{
+    console.log(req.body.title);
+  
+    const{title,campaign,information, logo} = req.body;
+  
+    //This enables us to access the movie model & save the entered details
+    const newSession = new sessionModel({title, campaign, information, logo});
+    await newSession.save();
+  
+    //Response Message
+    res.status(201).json({ message: 'Session details created successfully', session: newSession });
+})
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
