@@ -70,7 +70,7 @@ const editSession = ()=>{
                     <label>Edit session campaign: </label>
                     <input type="text"
                     className="form-control"
-                    value={year}
+                    value={campaign}
                     onChange={(e) =>{setCampaign(e.target.value)}}></input>
                 </div>
             </form>
@@ -80,7 +80,7 @@ const editSession = ()=>{
                     <label>Edit the sessions information: </label>
                     <input type="text"
                     className="form-control"
-                    value={poster}
+                    value={information}
                     onChange={(e) =>{setInfo(e.target.value)}}></input>
                 </div>
             {/*Getting the logo for the session and saving it to the server*/}
@@ -89,7 +89,7 @@ const editSession = ()=>{
                     <label>Change the logo for this campaign: </label>
                     <input type="text"
                     className="form-control"
-                    value={year}
+                    value={logo}
                     onChange={(e) =>{setLogo(e.target.value)}}></input>
                 </div>
             </form>
