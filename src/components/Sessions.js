@@ -6,7 +6,7 @@ const Sessions = (props)=>{
     return props.mySessions.map(
         (session)=>{
             //Takes each individual object and splits up into different items we can access
-            return <SessionItem mySessions={session} key={session._id} Reload={props.ReloadData}/>
+            return <SessionItem MySession={session} key={session._id} Reload={props.ReloadData}/>
         }
     )
 }

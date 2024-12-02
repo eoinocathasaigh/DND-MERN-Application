@@ -6,6 +6,8 @@ import Combat from './components/Combat';
 import GeneralInfo from './components/GeneralInfo';
 import SessionTracker from './components/SessionTracker';
 import Home from './components/Home';
+import Create from './components/addSession';
+import editSession from './components/editSession';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/Character" element={<Character/>} />
           <Route path="/Sessions" element={<SessionTracker/>} />
           <Route path="/Combat" element={<Combat/>} />
+          <Route path="/addSession" element={<Create/>}/>
+          <Route path="/edit/:id" element={<editSession/>}/>
         </Routes>
       </Router>
     </div>
