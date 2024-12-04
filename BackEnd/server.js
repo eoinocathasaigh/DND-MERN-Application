@@ -28,8 +28,16 @@ const sessionSchema = new mongoose.Schema({
     logo: String
 });
 
-//Making the session model & adding to it
+const characterSchema = new mongoose.Schema({
+    name: String,
+    race: String,
+    playerClass: String,
+    level: String
+});
+
+//Making the session models & adding to them
 const sessionModel = new mongoose.model('sessionNotes', sessionSchema);
+const characterModel = new mongoose.model('characterDetails', characterSchema);
 //Allow us to parse json out of a http request
 const bodyParser = require('body-parser');
 const { Navigate } = require('react-router-dom');
@@ -41,7 +49,7 @@ app.get('/', (req, res) => {
     res.send('Session Added');
 });
 
-//Handling sending back data when user goes to api/movies
+//Get Methods for this application
 app.get('/api/SessionTracker', async (req, res) => {
     //Await will basically prevent code from going any further until this is completed
     const sessions = await sessionModel.find({});
@@ -50,6 +58,11 @@ app.get('/api/SessionTracker', async (req, res) => {
     //- A status code denoting success
     //- The sessions data in the form of json
     res.status(200).json({ mySessions: sessions });
+});
+
+app.get('/api/CharacterCreator', async (req,res)=>{
+    const characters = await characterModel.find({});
+    res.status(200).json({myCharacter: characters});
 });
 
 //Method for sending data back to server
@@ -65,6 +78,19 @@ app.post('/api/SessionTracker', async (req, res) => {
 
     //Response Message
     res.status(201).json({ message: 'Session details created successfully', session: newSession });
+})
+
+app.post('/api/CharacterCreator', async (req, res) => {
+    console.log(req.body.title);
+
+    const { name, race, playerClass, level } = req.body;
+
+    //This enables us to access the movie model & save the entered details
+    const newCharacter = new characterModel({ name, race, playerClass, level });
+    await newCharacter.save();
+
+    //Response Message
+    res.status(201).json({ message: 'Session details created successfully', character: newCharacter });
 })
 
 //The following will listen for the app.put method
