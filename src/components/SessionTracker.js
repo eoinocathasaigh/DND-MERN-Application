@@ -2,9 +2,7 @@ import Sessions from "./Sessions";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-//Importing our Movies component
 
-//Read component holds an array of JSON data we will pass to our movies component to use from there
 const SessionTracker = ()=>{
   //useState Allows us to state variables to functional components
   //Essentially another way for us to handle data in the class
@@ -23,13 +21,14 @@ const SessionTracker = ()=>{
   }
     useEffect(()=>{
         Reload();
-      },[] // - Doing this calms the array to stop it from being called multiple times
+      },[] // - Stops us from reloading multiple times
     );
     return(
         <div>
-            <h3>Hello from the Read component</h3>
+            <h3>Welcome to the session tracker</h3>
+            <p>Sessions are a key part of DND<br/>All that you do will occur during one<br/>And this page is dedicated to helping you keep track og them</p>
             <Link className="btn btn-primary" to={"/addSession"}>Add a new Session</Link>
-            {/*We create the variable "myMovies" for our movies component and pass it the data we have in this class*/}
+            {/*We pass the MySessions component the details we have in this class*/}
             <Sessions mySessions ={session} ReloadData={Reload}/>
         </div>
     )

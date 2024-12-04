@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../DnDLogo.svg';
 import '../App.css';
 
+//This is a basic home component meant to act as the homepage - default view for the user
 const Home = () => {
   return (
     <div>

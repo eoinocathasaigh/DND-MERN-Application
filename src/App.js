@@ -12,6 +12,7 @@ import Edit from './components/editSession';
 function App() {
   return (
     <div className="App">
+      {/*Declaring the routes we will use in this application*/}
       <Router>
         <NavigationBar />
         <Routes>

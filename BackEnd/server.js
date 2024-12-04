@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const port = 4000;
 
-//Use Functions for this program
 //Cors - enables communication between the frontend and backend when running on different domains or ports
 const cors = require('cors');
 app.use(cors());
@@ -20,7 +19,7 @@ const mongoose = require('mongoose');
 //Connects us to our database using the connection string
 mongoose.connect('mongodb+srv://admin:admin@cluster0.e9tim.mongodb.net/DNDDB');
 
-//Data Models for this app
+//Schemas for this app
 //This will help us store data to send to the database
 const sessionSchema = new mongoose.Schema({
     title: String,
@@ -44,13 +43,12 @@ app.get('/', (req, res) => {
 
 //Handling sending back data when user goes to api/movies
 app.get('/api/SessionTracker', async (req, res) => {
-    //Await will basically prevent code from going any
-    //further until this is completed
+    //Await will basically prevent code from going any further until this is completed
     const sessions = await sessionModel.find({});
 
     //This sends back the following:
     //- A status code denoting success
-    //- The movies data in the form of json
+    //- The sessions data in the form of json
     res.status(200).json({ mySessions: sessions });
 });
 
