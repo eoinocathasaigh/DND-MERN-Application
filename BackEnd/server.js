@@ -71,23 +71,23 @@ app.post('/api/SessionTracker', async (req, res) => {
 
 //The following will listen for the app.put method
 //-Editing
-app.get('api/session/:id', async (req, res) => {
+app.get('/api/session/:id', async (req, res) => {
     //Finding the movie needs to be async since we dont know how long it will take to get
-    const movie = await movieModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.send(movie);
+    const session = await sessionModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(session);
 })
 
 //Editing the movies - Ensures the data is set properly
 app.put('/api/session/:id', async (req, res) => {
-    let movie = await movieModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.send(movie);
+    let session = await sessionModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(session);
 });
 
 //Deleting 
 app.delete('/api/session/:id', async (req, res) => {
-    console.log("Deleting movie with ID: ", req.params.id);
-    const movie = await movieModel.findByIdAndDelete(req.params.id)
-    res.send(movie);
+    console.log("Deleting Session with ID: ", req.params.id);
+    const session = await sessionModel.findByIdAndDelete(req.params.id)
+    res.send(session);
 })
 
 app.listen(port, () => {

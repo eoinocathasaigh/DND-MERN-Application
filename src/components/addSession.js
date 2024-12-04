@@ -1,5 +1,6 @@
 import { useState } from "react";//Need to import useState first to use it
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Create = ()=>{
     //We do everything in this class thanks to Axios
     //Allows us to handle http requests & responses
@@ -9,6 +10,7 @@ const Create = ()=>{
     const[campaign, setCampaign] = useState('');
     const[information, setInformation] = useState('');
     const[logo, setLogo] = useState('');
+    const navigate = useNavigate();
 
     //Used to handle when our submit button is pressed
     //Takes in the element, prevents it from repeating
@@ -18,12 +20,14 @@ const Create = ()=>{
         //Prevents the function from being called multiple times
         e.preventDefault();
         //Outputting the title entered by the user to the console
-        const session = {title, campaign, information};
+        const session = {title, campaign, information, logo};
         console.log(session);
 
         axios.post('http://localhost:4000/api/SessionTracker', session)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err.data));
+
+        navigate('/Sessions');
     }
     return(
         <div>

@@ -1,6 +1,7 @@
 import Sessions from "./Sessions";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 //Importing our Movies component
 
 //Read component holds an array of JSON data we will pass to our movies component to use from there
@@ -27,6 +28,7 @@ const SessionTracker = ()=>{
     return(
         <div>
             <h3>Hello from the Read component</h3>
+            <Link className="btn btn-primary" to={"/addSession"}>Add a new Session</Link>
             {/*We create the variable "myMovies" for our movies component and pass it the data we have in this class*/}
             <Sessions mySessions ={session} ReloadData={Reload}/>
         </div>
