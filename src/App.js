@@ -9,7 +9,7 @@ import Home from './components/Home';
 import Create from './components/addSession';
 import Edit from './components/editSession';
 import AddCharacter from './components/addCharacter';
-import EditCharacter from './components/editCharacter';
+import EditCharacter from './components/editCharacter.js';
 
 function App() {
   return (
