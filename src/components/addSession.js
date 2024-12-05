@@ -1,7 +1,7 @@
 import { useState } from "react";//Need to import useState first to use it
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Create = ()=>{
+const CreateSession = ()=>{
     //We do everything in this class thanks to Axios
     //Allows us to handle http requests & responses
     //Axios allows us to send asynchronous http requests(get, post)
@@ -79,4 +79,4 @@ const Create = ()=>{
     )
 }
 
-export default Create;
+export default CreateSession;

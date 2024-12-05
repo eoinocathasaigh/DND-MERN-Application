@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Edit = () => {
+const EditSession = () => {
     //Declaring & setting all the values for the specific session
     const {id} = useParams();
     const [title, setTitle] = useState('');
@@ -82,4 +82,4 @@ const Edit = () => {
         </div>
     );
 }
-export default Edit;
+export default EditSession;
