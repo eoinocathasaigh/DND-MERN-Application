@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Create from './components/addSession';
 import Edit from './components/editSession';
 import AddCharacter from './components/addCharacter';
+import EditCharacter from './components/editCharacter';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/addSession" element={<Create/>}/>
           <Route path="/addCharacter" element={<AddCharacter/>}/>
           <Route path="/edit/:id" element={<Edit/>}/>
+          <Route path="/edit/:id" element={<EditCharacter/>}/>
         </Routes>
       </Router>
     </div>

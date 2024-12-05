@@ -89,7 +89,7 @@ app.post('/api/CharacterCreator', async (req, res) => {
     await newCharacter.save();
 
     //Response Message
-    res.status(201).json({ message: 'Session details created successfully', character: newCharacter });
+    res.status(201).json({ message: 'Character created successfully', character: newCharacter });
 })
 
 //The following will listen for the app.put method
@@ -100,10 +100,22 @@ app.get('/api/session/:id', async (req, res) => {
     res.send(session);
 })
 
-//Editing the movies - Ensures the data is set properly
+//Navigating to the editing character page & returning the appropriate info
+app.get('/api/Character/:id', async (req, res) => {
+    //Finding the movie needs to be async since we dont know how long it will take to get
+    const character = await characterModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(character);
+})
+
+//Editing the sessions - Ensures the data is set properly
 app.put('/api/session/:id', async (req, res) => {
     let session = await sessionModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.send(session);
+});
+
+app.put('/api/Character/:id', async (req, res) => {
+    let character = await characterModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(character);
 });
 
 //Deleting 
