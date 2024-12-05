@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-
 const NavigationBar = () => {
   return (
         <Navbar bg="red" data-bs-theme="red" color='red'>

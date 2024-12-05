@@ -46,7 +46,6 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     console.log(req.body.title);
-    res.send('Session Added');
 });
 
 //Get Methods for this application
