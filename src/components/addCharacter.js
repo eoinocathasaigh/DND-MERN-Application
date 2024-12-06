@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import React from 'react';
 
 const AddCharacter = () => {
 
@@ -35,6 +36,14 @@ const AddCharacter = () => {
                         className="form-control"
                         value={race}
                         onChange={(e) => { setRace(e.target.value) }}/>
+                        <label>
+                        <b>Select Characters Race:</b>
+                        <select name="selectedRace" value={race} onChange={(e) => { setRace(e.target.value) }}>
+                        <option value="apple">Apple</option>
+                        <option value="banana">Banana</option>
+                        <option value="orange">Orange</option>
+                        </select>
+                    </label>
                 </div>
                 <div className="form-group">
                     <label>Select Character Class: </label>

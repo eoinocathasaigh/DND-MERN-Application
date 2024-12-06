@@ -35,9 +35,15 @@ const characterSchema = new mongoose.Schema({
     level: String
 });
 
+const creationSchema = new mongoose.Schema({
+    race: String,
+    classes: String
+})
+
 //Making the session models & adding to them
 const sessionModel = new mongoose.model('sessionNotes', sessionSchema);
 const characterModel = new mongoose.model('characterDetails', characterSchema);
+const createModel = new mongoose.model('creationdetails', creationSchema)
 //Allow us to parse json out of a http request
 const bodyParser = require('body-parser');
 const { Navigate } = require('react-router-dom');
