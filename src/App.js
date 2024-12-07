@@ -26,7 +26,7 @@ function App() {
           <Route path="/addSession" element={<CreateSession/>}/>
           <Route path="/addCharacter" element={<AddCharacter/>}/>
           <Route path="/edit/:id" element={<EditSesson/>}/>
-          <Route path="/edit/:id" element={<EditCharacter/>}/>
+          <Route path="/editChar/:id" element={<EditCharacter/>}/>
         </Routes>
       </Router>
     </div>

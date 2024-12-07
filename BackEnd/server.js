@@ -32,12 +32,13 @@ const characterSchema = new mongoose.Schema({
     name: String,
     race: String,
     playerClass: String,
-    level: String
+    level: String,
+    image: String
 });
 
 const creationSchema = new mongoose.Schema({
-    race: String,
-    classes: String
+    race: [String],
+    classes: [String]
 })
 
 //Making the session models & adding to them
@@ -70,6 +71,20 @@ app.get('/api/CharacterCreator', async (req,res)=>{
     res.status(200).json({myCharacter: characters});
 });
 
+//Sending the race and class options back to the add character page
+app.get('/api/options', async(req, res)=>{
+    const creation = await createModel.findOne();
+    if(!creation){
+        console.log("No creations found")
+    }
+    else{
+        res.status(200).json({
+            race: creation.race,
+            classes: creation.classes
+        });
+    }
+})
+
 //Method for sending data back to server
 //This will basicaslly listen constantly for the response being sent back and will display the appropriate message
 app.post('/api/SessionTracker', async (req, res) => {
@@ -88,10 +103,10 @@ app.post('/api/SessionTracker', async (req, res) => {
 app.post('/api/CharacterCreator', async (req, res) => {
     console.log(req.body.title);
 
-    const { name, race, playerClass, level } = req.body;
+    const { name, race, playerClass, level, image} = req.body;
 
     //This enables us to access the movie model & save the entered details
-    const newCharacter = new characterModel({ name, race, playerClass, level });
+    const newCharacter = new characterModel({ name, race, playerClass, level, image});
     await newCharacter.save();
 
     //Response Message
@@ -129,6 +144,12 @@ app.delete('/api/session/:id', async (req, res) => {
     console.log("Deleting Session with ID: ", req.params.id);
     const session = await sessionModel.findByIdAndDelete(req.params.id)
     res.send(session);
+})
+
+app.delete('/api/Character/:id', async (req, res) => {
+    console.log("Deleting Character with ID: ", req.params.id);
+    const character = await characterModel.findByIdAndDelete(req.params.id)
+    res.send(character);
 })
 
 app.listen(port, () => {
