@@ -3,7 +3,6 @@ import CharacterCreator from './components/CharacterCreator';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavigationBar from './components/NavBar';
 import CombatTracker from './components/CombatTracker';
-import GeneralInfo from './components/GeneralInfo';
 import SessionTracker from './components/SessionTracker';
 import Home from './components/Home';
 import CreateSession from './components/addSession';
@@ -19,7 +18,6 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/GeneralInfo" element={<GeneralInfo/>} />
           <Route path="/Characters" element={<CharacterCreator/>} />
           <Route path="/Sessions" element={<SessionTracker/>} />
           <Route path="/Combat" element={<CombatTracker/>} />
