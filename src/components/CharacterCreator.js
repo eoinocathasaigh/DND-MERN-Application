@@ -7,6 +7,7 @@ const CharacterCreator = ()=>{
   //useState Allows us to state variables to functional components
   //Essentially another way for us to handle data in the class
   const[character, setCharacter] = useState([]);
+  
   const Reload = () =>{
     axios.get('http://localhost:4000/api/CharacterCreator')
         .then((response)=>{

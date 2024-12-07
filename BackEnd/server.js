@@ -41,10 +41,20 @@ const creationSchema = new mongoose.Schema({
     classes: [String]
 })
 
+const combatSchema = new mongoose.Schema({
+    name: String,
+    fighters: [{
+        name: String,
+        health: String,
+        initiative: String
+    }]
+})
+
 //Making the session models & adding to them
 const sessionModel = new mongoose.model('sessionNotes', sessionSchema);
 const characterModel = new mongoose.model('characterDetails', characterSchema);
-const createModel = new mongoose.model('creationdetails', creationSchema)
+const createModel = new mongoose.model('creationdetails', creationSchema);
+const combatModel = new mongoose.model('combatEncounters', combatSchema);
 //Allow us to parse json out of a http request
 const bodyParser = require('body-parser');
 const { Navigate } = require('react-router-dom');
@@ -69,6 +79,11 @@ app.get('/api/SessionTracker', async (req, res) => {
 app.get('/api/CharacterCreator', async (req,res)=>{
     const characters = await characterModel.find({});
     res.status(200).json({myCharacter: characters});
+});
+
+app.get('/api/CombatTracker', async (req,res)=>{
+    const encounter = await combatModel.find({});
+    res.status(200).json({myEncounter: encounter});
 });
 
 //Sending the race and class options back to the add character page
