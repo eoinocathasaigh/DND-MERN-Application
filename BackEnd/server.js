@@ -41,20 +41,24 @@ const creationSchema = new mongoose.Schema({
     classes: [String]
 })
 
-const combatSchema = new mongoose.Schema({
+// Define schema for fighters
+const fighterSchema = new mongoose.Schema({
+    type: String,
+    hp: Number,
+    initiative: Number,
+});
+
+// Define schema for encounters
+const encounterSchema = new mongoose.Schema({
     name: String,
-    fighters: [{
-        name: String,
-        health: String,
-        initiative: String
-    }]
-})
+    fighters: [fighterSchema], // Array of fighters
+});
 
 //Making the session models & adding to them
 const sessionModel = new mongoose.model('sessionNotes', sessionSchema);
 const characterModel = new mongoose.model('characterDetails', characterSchema);
 const createModel = new mongoose.model('creationdetails', creationSchema);
-const combatModel = new mongoose.model('combatEncounters', combatSchema);
+const combatModel = new mongoose.model('combatEncounters', encounterSchema);
 //Allow us to parse json out of a http request
 const bodyParser = require('body-parser');
 const { Navigate } = require('react-router-dom');
@@ -76,23 +80,23 @@ app.get('/api/SessionTracker', async (req, res) => {
     res.status(200).json({ mySessions: sessions });
 });
 
-app.get('/api/CharacterCreator', async (req,res)=>{
+app.get('/api/CharacterCreator', async (req, res) => {
     const characters = await characterModel.find({});
-    res.status(200).json({myCharacter: characters});
+    res.status(200).json({ myCharacter: characters });
 });
 
-app.get('/api/CombatTracker', async (req,res)=>{
+app.get('/api/CombatTracker', async (req, res) => {
     const encounter = await combatModel.find({});
-    res.status(200).json({myEncounter: encounter});
+    res.status(200).json({ myEncounter: encounter });
 });
 
 //Sending the race and class options back to the add character page
-app.get('/api/options', async(req, res)=>{
+app.get('/api/options', async (req, res) => {
     const creation = await createModel.findOne();
-    if(!creation){
+    if (!creation) {
         console.log("No creations found")
     }
-    else{
+    else {
         res.status(200).json({
             race: creation.race,
             classes: creation.classes
@@ -118,15 +122,23 @@ app.post('/api/SessionTracker', async (req, res) => {
 app.post('/api/CharacterCreator', async (req, res) => {
     console.log(req.body.title);
 
-    const { name, race, playerClass, level, image} = req.body;
+    const { name, race, playerClass, level, image } = req.body;
 
     //This enables us to access the movie model & save the entered details
-    const newCharacter = new characterModel({ name, race, playerClass, level, image});
+    const newCharacter = new characterModel({ name, race, playerClass, level, image });
     await newCharacter.save();
 
     //Response Message
     res.status(201).json({ message: 'Character created successfully', character: newCharacter });
 })
+
+// Add a new encounter
+app.post('/api/encounters', async (req, res) => {
+    const { name, fighters } = req.body;
+    const newEncounter = new combatModel({ name, fighters });
+    await newEncounter.save();
+    res.status(201).json({ message: 'Encounter created successfully', encounter: newEncounter });
+});
 
 //The following will listen for the app.put method
 //-Editing
@@ -143,6 +155,13 @@ app.get('/api/Character/:id', async (req, res) => {
     res.send(character);
 })
 
+//Navigating to the editing combat page & returning the appropriate info
+app.get('/api/encounters/:id', async (req, res) => {
+    //Finding the movie needs to be async since we dont know how long it will take to get
+    const encounter = await combatModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(encounter);
+})
+
 //Editing the sessions - Ensures the data is set properly
 app.put('/api/session/:id', async (req, res) => {
     let session = await sessionModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -152,6 +171,13 @@ app.put('/api/session/:id', async (req, res) => {
 app.put('/api/Character/:id', async (req, res) => {
     let character = await characterModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.send(character);
+});
+
+// Update encounter (edit fighters or name)
+app.put('/api/encounters/:id', async (req, res) => {
+    const { name, fighters } = req.body;
+    const updatedEncounter = await combatModel.findByIdAndUpdate(req.params.id, { name, fighters }, { new: true });
+    res.status(200).json({ message: 'Encounter updated successfully', encounter: updatedEncounter });
 });
 
 //Deleting 
@@ -166,6 +192,12 @@ app.delete('/api/Character/:id', async (req, res) => {
     const character = await characterModel.findByIdAndDelete(req.params.id)
     res.send(character);
 })
+
+// Delete an encounter
+app.delete('/api/encounters/:id', async (req, res) => {
+    const encounter = await combatModel.findByIdAndDelete(req.params.id);
+    res.send(encounter);
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

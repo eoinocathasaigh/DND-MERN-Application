@@ -9,6 +9,8 @@ import CreateSession from './components/addSession';
 import EditSesson from "./components/editSession.js"
 import AddCharacter from './components/addCharacter';
 import EditCharacter from './components/editCharacter.js';
+import AddEncounter from './components/addEncounter.js';
+import PlayEncounter from './components/playEncounter.js';
 
 function App() {
   return (
@@ -17,14 +19,16 @@ function App() {
       <Router>
         <NavigationBar />
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/Characters" element={<CharacterCreator/>} />
-          <Route path="/Sessions" element={<SessionTracker/>} />
-          <Route path="/Combat" element={<CombatTracker/>} />
-          <Route path="/addSession" element={<CreateSession/>}/>
-          <Route path="/addCharacter" element={<AddCharacter/>}/>
-          <Route path="/edit/:id" element={<EditSesson/>}/>
-          <Route path="/editChar/:id" element={<EditCharacter/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/Characters" element={<CharacterCreator />} />
+          <Route path="/Sessions" element={<SessionTracker />} />
+          <Route path="/Combat" element={<CombatTracker />} />
+          <Route path="/addSession" element={<CreateSession />} />
+          <Route path="/addCharacter" element={<AddCharacter />} />
+          <Route path="/edit/:id" element={<EditSesson />} />
+          <Route path="/editChar/:id" element={<EditCharacter />} />
+          <Route path="/addEncounter" element={<AddEncounter />} />
+          <Route path="/playEncounter/:id" element={<PlayEncounter/>}/>
         </Routes>
       </Router>
     </div>
