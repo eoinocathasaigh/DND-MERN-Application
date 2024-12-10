@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import backgroundImage from '../images/CombatBackground.jpg'
 
 const PlayEncounter = () => {
   const { id } = useParams();
@@ -10,6 +11,24 @@ const PlayEncounter = () => {
   const [hp, setHp] = useState('');
   const [initiative, setInitiative] = useState('');
   const navigate = useNavigate();
+
+  const bodyStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover', // Ensures the image covers the entire div
+    backgroundPosition: 'center', // Centers the image
+    height: '90vh', // Sets the height to full viewport height
+    overflow: 'auto'
+  };
+
+  const playStyle = {
+    backgroundColor: 'lightblue', // Corrected property name
+    border: '4px solid black', // Black border
+    borderRadius: '10px', // Rounded corners
+    padding: '20px', // Padding inside the div
+    maxWidth: '450px', // Restrict the width of the div
+    margin: '20px auto', // Center the div and add vertical margin
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+  }
 
   // Fetch encounter data on page load
   useEffect(() => {
@@ -50,20 +69,22 @@ const PlayEncounter = () => {
   const sortedFighters = fighters.sort((a, b) => b.initiative - a.initiative);
 
   return (
-    <div>
-      <h3><b>Playing Encounter:</b> {name}</h3>
-      <form onSubmit={handleSubmit}>
+    <div style={bodyStyle}>
+      <div style={playStyle}>
+        <h3><b>Playing Encounter:</b> {name}</h3>
+      </div>
+      <form onSubmit={handleSubmit} style={playStyle}>
         <div>
-          <label><b>Name:</b></label><br/>
+          <label><b>Name:</b></label><br />
           <input value={name} onChange={(e) => setName(e.target.value)} required />
         </div>
         <div>
-          <label><b>Fighter Type:</b></label><br/>
-          <input value={type} onChange={(e) => setType(e.target.value)} /><br/>
-          <label><b>HP:</b></label><br/>
-          <input value={hp} type="number" onChange={(e) => setHp(e.target.value)} /><br/>
-          <label><b>Initiative:</b></label><br/>
-          <input value={initiative} type="number" onChange={(e) => setInitiative(e.target.value)} /><br/>
+          <label><b>Fighter Type:</b></label><br />
+          <input value={type} onChange={(e) => setType(e.target.value)} /><br />
+          <label><b>HP:</b></label><br />
+          <input value={hp} type="number" onChange={(e) => setHp(e.target.value)} /><br />
+          <label><b>Initiative:</b></label><br />
+          <input value={initiative} type="number" onChange={(e) => setInitiative(e.target.value)} /><br />
           <button type="button" onClick={addFighter}>Add Fighter</button>
         </div>
         <div>

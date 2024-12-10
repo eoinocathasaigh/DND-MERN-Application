@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, Text } from 'react-native';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './CharCreator.css';
 import backgroundImage from '../images/characterBackground.jpg'
 
 const CharacterCreator = () => {

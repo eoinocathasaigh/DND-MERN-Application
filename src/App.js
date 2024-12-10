@@ -1,5 +1,5 @@
 import './App.css';
-import CharacterCreator from './components/CharacterCreator';
+import CharacterCreator from './components/CharacterCreator.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavigationBar from './components/NavBar';
 import CombatTracker from './components/CombatTracker';
