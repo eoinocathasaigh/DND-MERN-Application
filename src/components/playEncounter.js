@@ -54,16 +54,16 @@ const PlayEncounter = () => {
       <h3><b>Playing Encounter:</b> {name}</h3>
       <form onSubmit={handleSubmit}>
         <div>
-          <label><b>Name:</b></label><br></br>
+          <label><b>Name:</b></label><br/>
           <input value={name} onChange={(e) => setName(e.target.value)} required />
         </div>
         <div>
-          <label><b>Fighter Type:</b></label><br></br>
-          <input value={type} onChange={(e) => setType(e.target.value)} /><br></br>
-          <label><b>HP:</b></label><br></br>
-          <input value={hp} type="number" onChange={(e) => setHp(e.target.value)} /><br></br>
-          <label><b>Initiative:</b></label><br></br>
-          <input value={initiative} type="number" onChange={(e) => setInitiative(e.target.value)} /><br></br>
+          <label><b>Fighter Type:</b></label><br/>
+          <input value={type} onChange={(e) => setType(e.target.value)} /><br/>
+          <label><b>HP:</b></label><br/>
+          <input value={hp} type="number" onChange={(e) => setHp(e.target.value)} /><br/>
+          <label><b>Initiative:</b></label><br/>
+          <input value={initiative} type="number" onChange={(e) => setInitiative(e.target.value)} /><br/>
           <button type="button" onClick={addFighter}>Add Fighter</button>
         </div>
         <div>

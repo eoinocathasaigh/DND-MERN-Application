@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import backgroundImage from '../images/characterBackground.jpg'
 
 const AddCharacter = () => {
 
@@ -13,6 +14,25 @@ const AddCharacter = () => {
     const [availableRaces, setAvailableRaces] = useState([]); // To store fetched races
     const [availableClasses, setAvailableClasses] = useState([]); // To store fetched classes
     const navigate = useNavigate();
+
+    //Styling this page
+    const bodyStyle = {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover', // Ensures the image covers the entire div
+        backgroundPosition: 'center', // Centers the image
+        height: '90vh', // Sets the height to full viewport height
+        overflow: 'auto'
+    };
+
+    const addStyle = {
+        backgroundColor: 'lightblue', // Corrected property name
+        border: '4px solid black', // Black border
+        borderRadius: '10px', // Rounded corners
+        padding: '20px', // Padding inside the div
+        maxWidth: '250px', // Restrict the width of the div
+        margin: '20px auto', // Center the div and add vertical margin
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+    };
 
     // Fetch options for races and classes from backend
     useEffect(() => {
@@ -42,75 +62,77 @@ const AddCharacter = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const player = { name, race, playerClass, level, image};
+        const player = { name, race, playerClass, level, image };
         console.log(player);
 
         axios.post('http://localhost:4000/api/CharacterCreator', player)
             .then((res) => {
-                console.log(res.data) 
+                console.log(res.data)
                 navigate('/Characters');
             })
             .catch();
     }
 
     return (
-        <div>
-            <h3>Welcome to the character Creation page</h3>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>
-                        <label>Enter Players name: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={name}
-                            onChange={(e) => { setName(e.target.value) }} />
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <b>Select Characters Race:</b>
-                        <select
-                            className="form-control"
-                            value={race}
-                            onChange={(e) => setRace(e.target.value)}>
-                            <option value="" disabled>Select a race</option>
-                            {availableRaces.map((raceOption, index) => (
-                                <option key={index} value={raceOption}>
-                                    {raceOption}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <label><b>Select Character Class:</b></label>
-                        <select
-                            className="form-control"
-                            value={playerClass}
-                            onChange={(e) => setClass(e.target.value)}>
-                            <option value="" disabled>Select characters class</option>
-                            {availableClasses.map((classOption, index) => (
-                                <option key={index} value={classOption}>
-                                    {classOption}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <label>Enter Character Level: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={level}
-                            onChange={(e) => { setLevel(e.target.value) }} />
-                    </label>
-                </div>
-                <div>
-                    <input type="submit" value="Create Character"></input>
-                </div>
-            </form>
+        <div style={bodyStyle}>
+            <div style={addStyle}>
+                <h3>Welcome to the character Creation page</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>
+                            <label >Enter Players name: </label>
+                            <input type="text"
+                                className="form-control"
+                                value={name}
+                                onChange={(e) => { setName(e.target.value) }} />
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <b>Select Characters Race:</b>
+                            <select
+                                className="form-control"
+                                value={race}
+                                onChange={(e) => setRace(e.target.value)}>
+                                <option value="" disabled>Select a race</option>
+                                {availableRaces.map((raceOption, index) => (
+                                    <option key={index} value={raceOption}>
+                                        {raceOption}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <label><b>Select Character Class:</b></label>
+                            <select
+                                className="form-control"
+                                value={playerClass}
+                                onChange={(e) => setClass(e.target.value)}>
+                                <option value="" disabled>Select characters class</option>
+                                {availableClasses.map((classOption, index) => (
+                                    <option key={index} value={classOption}>
+                                        {classOption}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <label>Enter Character Level: </label>
+                            <input type="text"
+                                className="form-control"
+                                value={level}
+                                onChange={(e) => { setLevel(e.target.value) }} />
+                        </label>
+                    </div>
+                    <div>
+                        <input type="submit" value="Create Character"></input>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

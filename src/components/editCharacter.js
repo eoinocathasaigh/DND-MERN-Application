@@ -2,10 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from '../images/characterBackground.jpg'
 
 const EditCharacter = () => {
     //Declaring & setting all the values for the specific session
-    const {id} = useParams();
+    const { id } = useParams();
     const [name, setName] = useState('');
     const [race, setRace] = useState('');
     const [playerClass, setClass] = useState('');
@@ -15,18 +16,37 @@ const EditCharacter = () => {
     const [availableClasses, setAvailableClasses] = useState([]); // To store fetched classes
     const navigate = useNavigate();
 
+    //Styling this page
+    const bodyStyle = {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover', // Ensures the image covers the entire div
+        backgroundPosition: 'center', // Centers the image
+        height: '90vh', // Sets the height to full viewport height
+        overflow: 'auto'
+    };
+
+    const editStyle = {
+        backgroundColor: 'lightblue', // Corrected property name
+        border: '4px solid black', // Black border
+        borderRadius: '10px', // Rounded corners
+        padding: '20px', // Padding inside the div
+        maxWidth: '250px', // Restrict the width of the div
+        margin: '20px auto', // Center the div and add vertical margin
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+    };
+
     //Handling moving to this page - sets the data automatically based on the session we choose
-    useEffect(()=>{
-        axios.get('http://localhost:4000/api/Character/'+id)
-        .then((res)=>{
-            console.log("sucess "+res.data);
-            setName(res.data.name);
-            setRace(res.data.race);
-            setClass(res.data.playerClass);
-            setLevel(res.data.level);
-        })
-        .catch((err)=>{console.log(err)});
-    },[id]);
+    useEffect(() => {
+        axios.get('http://localhost:4000/api/Character/' + id)
+            .then((res) => {
+                console.log("sucess " + res.data);
+                setName(res.data.name);
+                setRace(res.data.race);
+                setClass(res.data.playerClass);
+                setLevel(res.data.level);
+            })
+            .catch((err) => { console.log(err) });
+    }, [id]);
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/options')
@@ -55,79 +75,81 @@ const EditCharacter = () => {
     //Handling submitting the session - calls put method & sends the values to it
     const handleSubmit = (e) => {
         e.preventDefault();
-        const player = {name,race,playerClass,level, image};
+        const player = { name, race, playerClass, level, image };
         console.log(player);
 
-        axios.put('http://localhost:4000/api/Character/'+id, player)
-        .then((res)=>{
-            console.log("Edited: "+res.data);
-            navigate('/Characters');
-        })
-        .catch((err)=>{
-            console.log(err);
-        });
-      
+        axios.put('http://localhost:4000/api/Character/' + id, player)
+            .then((res) => {
+                console.log("Edited: " + res.data);
+                navigate('/Characters');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
     }
 
     //Returning the layout for the page - allowing us to edit & change values
     return (
-        <div>
-            <h3><b>Editing Character:</b> {name}</h3>
-            <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                    <label>
-                        <label>Edit Players name: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={name}
-                            onChange={(e) => { setName(e.target.value) }} />
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <b>Edit Characters Race:</b>
-                        <select
-                            className="form-control"
-                            value={race}
-                            onChange={(e) => setRace(e.target.value)}>
-                            <option value="" disabled>Select a race</option>
-                            {availableRaces.map((raceOption, index) => (
-                                <option key={index} value={raceOption}>
-                                    {raceOption}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <label><b>Edit Character Class:</b></label>
-                        <select
-                            className="form-control"
-                            value={playerClass}
-                            onChange={(e) => setClass(e.target.value)}>
-                            <option value="" disabled>Select characters class</option>
-                            {availableClasses.map((classOption, index) => (
-                                <option key={index} value={classOption}>
-                                    {classOption}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <label>Edit Character Level: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={level}
-                            onChange={(e) => { setLevel(e.target.value) }} />
-                    </label>
-                </div>
-                <div>
-                    <input type="submit" value="Edit Character Details"></input>
-                </div>
-            </form>
+        <div style={bodyStyle}>
+            <div style={editStyle}>
+                <h3><b>Editing Character:</b> {name}</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>
+                            <label><b>Edit Players Name:</b></label>
+                            <input type="text"
+                                className="form-control"
+                                value={name}
+                                onChange={(e) => { setName(e.target.value) }} />
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <b>Edit Characters Race:</b>
+                            <select
+                                className="form-control"
+                                value={race}
+                                onChange={(e) => setRace(e.target.value)}>
+                                <option value="" disabled>Select a race</option>
+                                {availableRaces.map((raceOption, index) => (
+                                    <option key={index} value={raceOption}>
+                                        {raceOption}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <label><b>Edit Character Class:</b></label>
+                            <select
+                                className="form-control"
+                                value={playerClass}
+                                onChange={(e) => setClass(e.target.value)}>
+                                <option value="" disabled>Select characters class</option>
+                                {availableClasses.map((classOption, index) => (
+                                    <option key={index} value={classOption}>
+                                        {classOption}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <label><b>Edit Character Level:</b></label>
+                            <input type="text"
+                                className="form-control"
+                                value={level}
+                                onChange={(e) => { setLevel(e.target.value) }} />
+                        </label>
+                    </div>
+                    <div>
+                        <input type="submit" value="Edit Character Details"></input>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
