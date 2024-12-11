@@ -18,7 +18,7 @@ const SessionTracker = () => {
   };
 
   const headerStyle = {
-    backgroundColor: 'white',
+    backgroundColor: 'Orange',
     border: '4px solid black',
     borderRadius: '10px',
     padding: '20px', 
@@ -46,7 +46,7 @@ const SessionTracker = () => {
   return (
     <div style={bodyStyle}>
       <div style={headerStyle}>
-        <h3>Welcome to the session tracker</h3>
+        <h3><b><u>Welcome to the session tracker</u></b></h3>
         <p>Sessions are a key part of DND<br />All that you do will occur during one<br />And this page is dedicated to helping you keep track of them</p>
       </div>
       <Link className="btn btn-primary" to={"/addSession"}>Add a new Session</Link>

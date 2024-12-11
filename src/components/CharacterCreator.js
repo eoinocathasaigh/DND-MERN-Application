@@ -47,7 +47,7 @@ const CharacterCreator = () => {
   return (
     <div style={bodyStyle}>
       <div style={headerStyle}>
-        <h3>Welcome to the Character Creator</h3>
+        <h3><b><u>Welcome to the Character Creator</u></b></h3>
         <p>Characters are a key part of DND<br />After all, they're you!<br />And this page is dedicated to helping you create & keep track of them</p>
       </div>
       <Link className="btn btn-primary" to={"/addCharacter"}>Create a new Character</Link>

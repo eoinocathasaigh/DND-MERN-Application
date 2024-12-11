@@ -67,7 +67,7 @@ const EditSession = () => {
     return (
         <div style={bodyStyle}>
             <div style={editStyle}>
-                <h3><b>Editing Session:</b> {title}</h3>
+                <h3><b><u>Editing Session:</u></b> {title}</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Edit Session Title: </label>
@@ -98,7 +98,7 @@ const EditSession = () => {
                             onChange={(e) => { setLogo(e.target.value) }} />
                     </div>
                     <div>
-                        <input type="submit" value="Edit Movie"></input>
+                        <input type="submit" value="Edit Session"></input>
                     </div>
                 </form>
             </div>

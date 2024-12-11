@@ -30,6 +30,15 @@ const AddEncounter = () => {
     margin: '20px auto',
   }
 
+  const fighterStyle = {
+    backgroundColor: 'white',
+    border: '4px solid black',
+    borderRadius: '10px',
+    padding: '20px',
+    maxWidth: '340px',
+    margin: '20px auto',
+  }
+
   //Functionality to add a fighter
   const addFighter = () => {
     setFighters([...fighters, { type, hp: parseInt(hp), initiative: parseInt(initiative) }]);
@@ -49,7 +58,7 @@ const AddEncounter = () => {
   return (
     <div style={bodyStyle}>
       <div style={addStyle}>
-      <h3>Create New Encounter</h3>
+      <h3><b><u>Create New Encounter</u></b></h3>
       <p>Let me explain the aspects of making a new combat encounter in DND<br/>You'll need the following:</p>
       <ul>
         <li><b>Encounter name:</b> Give this encounter a new name to make it more memorable should you need to step away halfway through</li>
@@ -72,7 +81,7 @@ const AddEncounter = () => {
           <input value={initiative} type="number" onChange={(e) => setInitiative(e.target.value)} /><br/>
           <button type="button" onClick={addFighter}><b>Add Fighter</b></button>
         </div>
-        <div>
+        <div style={fighterStyle}>
           <h3>Fighters:</h3>
           <ul>
             {fighters.map((fighter, index) => (

@@ -6,6 +6,15 @@ import Button from 'react-bootstrap/Button';
 
 const EncounterItems = (props) => {
 
+    //Styling the cards & their contents
+    const cardStyle = {
+        backgroundColor: 'gray',
+        border: '4px solid black',
+        borderRadius: '10px',
+        maxWidth: '18rem',
+        margin: '20px auto',
+    }
+
     useEffect(() => {
         console.log("Character Details: ", props.myEncounter);
     }, [props.myEncounter]); // Only run this effect when the session prop changes
@@ -27,10 +36,10 @@ const EncounterItems = (props) => {
     //Returning the details of the combat encounter to the screen
     return (
         <div>
-            <Card style={{ width: '18rem', margin: 'auto' }}>
-                <Card.Header>{props.myEncounter.name}</Card.Header>
-                <Card.Body>
-                    <p>{props.myEncounter.fighters.length} Fighters</p>
+            <Card style={cardStyle}>
+                <Card.Header style={{ border: '2px solid black', backgroundColor: 'white' }}><b>{props.myEncounter.name}</b></Card.Header>
+                <Card.Body style={{ border: '2px solid black', backgroundColor: 'lightblue' }}>
+                    <p style={{ border: '2px solid black', backgroundColor: 'white', borderRadius: '10px'}}><b>Currently: {props.myEncounter.fighters.length} fighters in combat</b></p>
                     <Link className="btn btn-primary" to={'/playEncounter/' + props.myEncounter._id}>Play</Link>
                     <Button className="btn btn-danger" onClick={handleDelete}>Delete</Button>
                 </Card.Body>

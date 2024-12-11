@@ -1,10 +1,19 @@
 import { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import axios from 'axios'; 
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 
 const CharacterItems = (props) => {
+
+    //Styling the cards & their contents
+    const cardStyle = {
+        backgroundColor: 'gray',
+        border: '4px solid black',
+        borderRadius: '10px',
+        maxWidth: '18rem',
+        margin: '20px auto',
+    }
 
     useEffect(() => {
         console.log("Character Details: ", props.myCharacter);
@@ -27,19 +36,19 @@ const CharacterItems = (props) => {
     return (
         <div>
             {/*This is simply a way of displaying the information of each character*/}
-            <Card style={{ width: '18rem', margin: "auto" }}>
-                <Card.Header><b>{props.myCharacter.name}</b></Card.Header>
+            <Card style={cardStyle}>
+                <Card.Header style={{ border: '2px solid black', backgroundColor: 'white' }}><b>{props.myCharacter.name}</b></Card.Header>
                 <Card.Body>
-                    <Card.Img variant="top" src={props.myCharacter.image} />
-                    <Card.Body><b>Race: </b>{props.myCharacter.race}<br />
-                        <b>Level</b> {props.myCharacter.level}</Card.Body>
-                    <footer><b>Class:</b> {props.myCharacter.class}</footer>
+                    <Card.Img variant="top" src={props.myCharacter.image} style={{ border: '2px solid black' }} />
+                    <Card.Body style={{ border: '2px solid black', backgroundColor: 'red' }}><b>Race: </b>{props.myCharacter.race}<br /></Card.Body>
+                    <Card.Body style={{ border: '2px solid black', backgroundColor: 'lightblue' }}><b>Level: </b>{props.myCharacter.level}</Card.Body>
+                    <footer style={{ border: '2px solid black', backgroundColor: 'white' }}><b>Class:</b> {props.myCharacter.playerClass}</footer>
                 </Card.Body>
                 {/*props.mySession._id -> allows us to target the specific item*/}
                 <Link className="btn btn-primary" to={"/editChar/" + props.myCharacter._id}>Edit Character</Link>
                 <Button className='btn btn-danger' onClick={handleDelete}>Delete Character</Button>
             </Card>
-            <br/>
+            <br />
         </div>
     )
 }

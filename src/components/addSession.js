@@ -48,8 +48,17 @@ const CreateSession = () => {
     return (
         <div style={bodyStyle}>
             <div style={addStyle}>
+                <h3><b><u>Create New Session</u></b></h3>
+                <p>Here you can create & log the details that go into your in DND<br />You'll need the following:</p>
+                <ul>
+                    <li><b>Session title:</b> Your sessions should have a nice name, something recognisable for you should you need to look back at a specific point</li>
+                    <li><b>Campaing:</b> To help better with sorting, give your session a name corresponding with whichever campaign you're currently in</li>
+                    <li><b>Session Details:</b> Describe what happened in this session, you can be as brief or as detailed as you like!</li>
+                    <li><b>Session Logo:</b> Give your session a logo to help it stick out a bit more</li>
+                </ul>
+            </div>
+            <div style={addStyle}>
                 {/*Getting the title for the session and saving it to the server*/}
-                <h3>Create a new session works</h3>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Add a Session Title: </label>

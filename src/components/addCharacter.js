@@ -29,7 +29,7 @@ const AddCharacter = () => {
         border: '4px solid black', 
         borderRadius: '10px', 
         padding: '20px', 
-        maxWidth: '250px', 
+        maxWidth: '350px', 
         margin: '20px auto', 
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', 
     };
@@ -78,11 +78,20 @@ const AddCharacter = () => {
     return (
         <div style={bodyStyle}>
             <div style={addStyle}>
-                <h3>Welcome to the character Creation page</h3>
+                <h3><b><u>Welcome to Character Creation</u></b></h3>
+                <p>This is one of the best parts of DND, designing who you want to be in game<br />Sometimes this can be confusing, but dont worry heres exactly what you'll need to make one.</p>
+                <ul>
+                    <li><b>Character Name:</b> This one is pretty simple, give yourself a name. It can be a silly or as serious as you want</li>
+                    <li><b>Character Race:</b> There are many races in dnd, each with their own benefits. But dont worry, we've limited things down to the basic ones. This should help you better decide on your characters lineage</li>
+                    <li><b>Character Class:</b> This is where things get good. What kind of fighter do you want to be? A masterful swordsman or a mysterious wizard? The choice is yours!</li>
+                    <li><b>Character Level:</b> What level is your character? Here you can decide what your characters skill is exactly</li>
+                </ul>
+            </div>
+            <div style={addStyle}>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>
-                            <label >Enter Players name: </label>
+                            <label ><b><u>Enter Players name:</u></b> </label>
                             <input type="text"
                                 className="form-control"
                                 value={name}
@@ -91,7 +100,7 @@ const AddCharacter = () => {
                     </div>
                     <div className="form-group">
                         <label>
-                            <b>Select Characters Race:</b>
+                            <b><u>Select Characters Race:</u></b>
                             <select
                                 className="form-control"
                                 value={race}
@@ -107,7 +116,7 @@ const AddCharacter = () => {
                     </div>
                     <div className="form-group">
                         <label>
-                            <label><b>Select Character Class:</b></label>
+                            <label><b><u>Select Character Class:</u></b></label>
                             <select
                                 className="form-control"
                                 value={playerClass}
@@ -123,7 +132,7 @@ const AddCharacter = () => {
                     </div>
                     <div className="form-group">
                         <label>
-                            <label>Enter Character Level: </label>
+                            <label><b><u>Enter Character Level:</u></b> </label>
                             <input type="text"
                                 className="form-control"
                                 value={level}

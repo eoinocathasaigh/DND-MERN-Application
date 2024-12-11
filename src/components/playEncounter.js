@@ -31,6 +31,15 @@ const PlayEncounter = () => {
     margin: '20px auto',
   }
 
+  const fighterStyle = {
+    backgroundColor: 'white',
+    border: '4px solid black',
+    borderRadius: '10px',
+    padding: '20px',
+    maxWidth: '340px',
+    margin: '20px auto',
+  }
+
   // Fetch encounter data on page load
   useEffect(() => {
     axios.get('http://localhost:4000/api/encounters/' + id)
@@ -74,7 +83,7 @@ const PlayEncounter = () => {
   return (
     <div style={bodyStyle}>
       <div style={playStyle}>
-        <h3><b>Playing Encounter:</b> {name}</h3>
+        <h3><b><u>Playing Encounter:</u></b> {name}</h3>
       </div>
       <form onSubmit={handleSubmit} style={playStyle}>
         <div>
@@ -90,8 +99,8 @@ const PlayEncounter = () => {
           <input value={initiative} type="number" onChange={(e) => setInitiative(e.target.value)} /><br />
           <button type="button" onClick={addFighter}>Add Fighter</button>
         </div>
-        <div>
-          <h4>Fighters:</h4>
+        <div style={fighterStyle}>
+          <h4><b><u>Fighters:</u></b></h4>
           <ul>
             {sortedFighters.map((fighter, index) => (
               <li key={index}>

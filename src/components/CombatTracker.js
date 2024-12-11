@@ -17,7 +17,7 @@ const CombatTracker = () => {
   };
 
   const headerStyle = {
-    backgroundColor: 'lightblue', 
+    backgroundColor: 'violet', 
     border: '4px solid black', 
     borderRadius: '10px',
     padding: '20px', 
@@ -46,7 +46,7 @@ const CombatTracker = () => {
   return (
     <div style={bodyStyle}>
       <div style={headerStyle}>
-        <h3>Combat Encounters</h3>
+        <h3><b><u>Combat Encounters</u></b></h3>
         <p>Combat is a key part of DND, its where things get really good.<br />But it can be hard to keep track of things with combat. Thats why this page exists, from here you can update, & keep track of each fighters position & health</p>
       </div>
       <Link className="btn btn-primary" to="/addEncounter">Create New Encounter</Link>

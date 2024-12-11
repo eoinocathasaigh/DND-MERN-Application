@@ -95,11 +95,11 @@ const EditCharacter = () => {
     return (
         <div style={bodyStyle}>
             <div style={editStyle}>
-                <h3><b>Editing Character:</b> {name}</h3>
+                <h3><b><u>Editing Character:</u></b> {name}</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>
-                            <label><b>Edit Players Name:</b></label>
+                            <label><b><u>Edit Players Name:</u></b></label>
                             <input type="text"
                                 className="form-control"
                                 value={name}
@@ -108,7 +108,7 @@ const EditCharacter = () => {
                     </div>
                     <div className="form-group">
                         <label>
-                            <b>Edit Characters Race:</b>
+                            <b><u>Edit Characters Race:</u></b>
                             <select
                                 className="form-control"
                                 value={race}
@@ -124,7 +124,7 @@ const EditCharacter = () => {
                     </div>
                     <div className="form-group">
                         <label>
-                            <label><b>Edit Character Class:</b></label>
+                            <label><b><u>Edit Character Class:</u></b></label>
                             <select
                                 className="form-control"
                                 value={playerClass}
@@ -140,7 +140,7 @@ const EditCharacter = () => {
                     </div>
                     <div className="form-group">
                         <label>
-                            <label><b>Edit Character Level:</b></label>
+                            <label><b><u>Edit Character Level:</u></b></label>
                             <input type="text"
                                 className="form-control"
                                 value={level}
