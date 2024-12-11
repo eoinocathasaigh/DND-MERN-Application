@@ -4,6 +4,7 @@ import axios from 'axios';
 import backgroundImage from '../images/CombatBackground.jpg'
 
 const AddEncounter = () => {
+  //Appropriate variables for this class
   const [name, setName] = useState('');
   const [fighters, setFighters] = useState([]);
   const [type, setType] = useState('');
@@ -11,24 +12,25 @@ const AddEncounter = () => {
   const [initiative, setInitiative] = useState('');
   const navigate = useNavigate();
 
+  //Styling the page
   const bodyStyle = {
     backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover', // Ensures the image covers the entire div
-    backgroundPosition: 'center', // Centers the image
-    height: '90vh', // Sets the height to full viewport height
+    backgroundSize: 'cover',
+    backgroundPosition: 'center', 
+    height: '90vh', 
     overflow: 'auto'
   };
 
   const addStyle = {
-    backgroundColor: 'lightblue', // Corrected property name
-    border: '4px solid black', // Black border
-    borderRadius: '10px', // Rounded corners
-    padding: '20px', // Padding inside the div
-    maxWidth: '450px', // Restrict the width of the div
-    margin: '20px auto', // Center the div and add vertical margin
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+    backgroundColor: 'lightblue', 
+    border: '4px solid black', 
+    borderRadius: '10px', 
+    padding: '20px', 
+    maxWidth: '450px', 
+    margin: '20px auto',
   }
 
+  //Functionality to add a fighter
   const addFighter = () => {
     setFighters([...fighters, { type, hp: parseInt(hp), initiative: parseInt(initiative) }]);
     setType('');
@@ -43,6 +45,7 @@ const AddEncounter = () => {
       .catch((err) => console.error(err));
   };
 
+  //Simple div containing the view of the adding encounter elements
   return (
     <div style={bodyStyle}>
       <div style={addStyle}>

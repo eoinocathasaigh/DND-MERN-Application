@@ -5,27 +5,26 @@ import { Link } from 'react-router-dom';
 import backgroundImage from '../images/SessionBackground.jpg'
 
 const SessionTracker = () => {
-  //useState Allows us to state variables to functional components
-  //Essentially another way for us to handle data in the class
+  //Variable allowing us to handle the data we retrieve
   const [session, setSession] = useState([]);
 
-  //Styling this page
+  //Styling this page - the main body & the smaller components
   const bodyStyle = {
     backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover', // Ensures the image covers the entire div
-    backgroundPosition: 'center', // Centers the image
-    height: '90vh', // Sets the height to full viewport height
+    backgroundSize: 'cover',
+    backgroundPosition: 'center', 
+    height: '90vh', 
     overflow: 'auto'
   };
 
   const headerStyle = {
-    backgroundColor: 'white', // Corrected property name
-    border: '4px solid black', // Black border
-    borderRadius: '10px', // Rounded corners
-    padding: '20px', // Padding inside the div
-    maxWidth: '450px', // Restrict the width of the div
-    margin: '20px auto', // Center the div and add vertical margin
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+    backgroundColor: 'white',
+    border: '4px solid black',
+    borderRadius: '10px',
+    padding: '20px', 
+    maxWidth: '450px', 
+    margin: '20px auto', 
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', 
   }
 
   const Reload = () => {

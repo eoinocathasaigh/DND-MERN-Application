@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import backgroundImage from '../images/CombatBackground.jpg'
 
+//This class performs similar functionality to editing seen in other functionality
 const PlayEncounter = () => {
   const { id } = useParams();
   const [name, setName] = useState('');
@@ -12,22 +13,22 @@ const PlayEncounter = () => {
   const [initiative, setInitiative] = useState('');
   const navigate = useNavigate();
 
+  //Styling the page
   const bodyStyle = {
     backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover', // Ensures the image covers the entire div
-    backgroundPosition: 'center', // Centers the image
-    height: '90vh', // Sets the height to full viewport height
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '90vh',
     overflow: 'auto'
   };
 
   const playStyle = {
-    backgroundColor: 'lightblue', // Corrected property name
-    border: '4px solid black', // Black border
-    borderRadius: '10px', // Rounded corners
-    padding: '20px', // Padding inside the div
-    maxWidth: '450px', // Restrict the width of the div
-    margin: '20px auto', // Center the div and add vertical margin
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+    backgroundColor: 'lightblue',
+    border: '4px solid black',
+    borderRadius: '10px',
+    padding: '20px',
+    maxWidth: '450px',
+    margin: '20px auto',
   }
 
   // Fetch encounter data on page load
@@ -41,15 +42,17 @@ const PlayEncounter = () => {
       .catch((err) => { console.log(err) });
   }, [id]);
 
+  //Method of adding a new character/fighter to the page
   const addFighter = () => {
     //Creating a new array of fighters
     setFighters([...fighters, { type, hp: parseInt(hp), initiative: parseInt(initiative) }]);
-    //Resetting eacho of the entry values back to blank so a new fighter can be entered
+    //Resetting each of the entry values back to blank so a new fighter can be entered
     setType('');
     setHp('');
     setInitiative('');
   };
 
+  //Handling submitting the items of the newly created encounter
   const handleSubmit = (e) => {
     e.preventDefault();
     const encounter = { name, fighters };
@@ -65,7 +68,7 @@ const PlayEncounter = () => {
       });
   };
 
-  // Sort fighters by initiative (highest to lowest)
+  //Sort fighters by initiative (highest to lowest)
   const sortedFighters = fighters.sort((a, b) => b.initiative - a.initiative);
 
   return (

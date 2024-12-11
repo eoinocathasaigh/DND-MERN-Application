@@ -1,4 +1,4 @@
-import { useState } from "react";//Need to import useState first to use it
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from '../images/SessionBackground.jpg'
@@ -17,30 +17,25 @@ const CreateSession = () => {
     //Styling this page
     const bodyStyle = {
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover', // Ensures the image covers the entire div
-        backgroundPosition: 'center', // Centers the image
-        height: '90vh', // Sets the height to full viewport height
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '90vh',
         overflow: 'auto'
     };
 
     const addStyle = {
-        backgroundColor: 'white', // Corrected property name
-        border: '4px solid black', // Black border
-        borderRadius: '10px', // Rounded corners
-        padding: '20px', // Padding inside the div
-        maxWidth: '450px', // Restrict the width of the div
-        margin: '20px auto', // Center the div and add vertical margin
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+        backgroundColor: 'white',
+        border: '4px solid black',
+        borderRadius: '10px',
+        padding: '20px',
+        maxWidth: '450px',
+        margin: '20px auto',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     }
 
     //Used to handle when our submit button is pressed
-    //Takes in the element, prevents it from repeating
-    //Then it logs it to the console
-    //Modified version now adds it to the server too
     const handleSubmit = (e) => {
-        //Prevents the function from being called multiple times
         e.preventDefault();
-        //Outputting the title entered by the user to the console
         const session = { title, campaign, information, logo };
         console.log(session);
 

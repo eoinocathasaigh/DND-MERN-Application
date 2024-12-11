@@ -12,27 +12,27 @@ const EditCharacter = () => {
     const [playerClass, setClass] = useState('');
     const [level, setLevel] = useState('');
     const [image, setImage] = useState('');
-    const [availableRaces, setAvailableRaces] = useState([]); // To store fetched races
-    const [availableClasses, setAvailableClasses] = useState([]); // To store fetched classes
+    const [availableRaces, setAvailableRaces] = useState([]);
+    const [availableClasses, setAvailableClasses] = useState([]);
     const navigate = useNavigate();
 
     //Styling this page
     const bodyStyle = {
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover', // Ensures the image covers the entire div
-        backgroundPosition: 'center', // Centers the image
-        height: '90vh', // Sets the height to full viewport height
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '90vh',
         overflow: 'auto'
     };
 
     const editStyle = {
-        backgroundColor: 'lightblue', // Corrected property name
-        border: '4px solid black', // Black border
-        borderRadius: '10px', // Rounded corners
-        padding: '20px', // Padding inside the div
-        maxWidth: '250px', // Restrict the width of the div
-        margin: '20px auto', // Center the div and add vertical margin
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: Adds a shadow for better visual appeal
+        backgroundColor: 'lightblue',
+        border: '4px solid black',
+        borderRadius: '10px',
+        padding: '20px',
+        maxWidth: '250px',
+        margin: '20px auto',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     };
 
     //Handling moving to this page - sets the data automatically based on the session we choose
@@ -48,15 +48,17 @@ const EditCharacter = () => {
             .catch((err) => { console.log(err) });
     }, [id]);
 
+    //Retrieving the options for the players race and class
     useEffect(() => {
         axios.get('http://localhost:4000/api/options')
             .then((res) => {
-                setAvailableRaces(res.data.race || []);
-                setAvailableClasses(res.data.classes || []);
+                setAvailableRaces(res.data.race);
+                setAvailableClasses(res.data.classes);
             })
             .catch((error) => console.error('Error fetching options:', error));
     }, []);
 
+    //Once the state changes we set the race appropriately
     useEffect(() => {
         const classToImageMap = {
             "Dragonborn": "https://i.pinimg.com/736x/1b/2b/21/1b2b215cad3448912075b9b2852db6fe.jpg",
@@ -69,7 +71,7 @@ const EditCharacter = () => {
             "Human": "https://dmingdad.com/wp-content/uploads/dungeons-and-dragons-human-fighter.png",
             "Tiefling": "https://pbs.twimg.com/media/C4HRsJJWQAI0Y8m.jpg",
         };
-        setImage(classToImageMap[race] || ""); // Default to an empty string if no mapping
+        setImage(classToImageMap[race]);
     }, [race]);
 
     //Handling submitting the session - calls put method & sends the values to it
