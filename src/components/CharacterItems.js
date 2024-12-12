@@ -17,7 +17,7 @@ const CharacterItems = (props) => {
 
     useEffect(() => {
         console.log("Character Details: ", props.myCharacter);
-    }, [props.myCharacter]); // Only run this effect when the session prop changes
+    }, [props.myCharacter]); // Only run this effect when the character prop changes
 
     //Handling the deletion of sessions
     const handleDelete = (e) => {

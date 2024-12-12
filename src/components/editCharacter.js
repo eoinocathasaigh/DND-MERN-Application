@@ -46,33 +46,29 @@ const EditCharacter = () => {
                 setLevel(res.data.level);
             })
             .catch((err) => { console.log(err) });
-    }, [id]);
 
-    //Retrieving the options for the players race and class
-    useEffect(() => {
         axios.get('http://localhost:4000/api/options')
             .then((res) => {
                 setAvailableRaces(res.data.race);
                 setAvailableClasses(res.data.classes);
             })
             .catch((error) => console.error('Error fetching options:', error));
-    }, []);
+    }, [id]);
 
-    //Once the state changes we set the race appropriately
-    useEffect(() => {
+    useEffect(() =>{
         const classToImageMap = {
             "Dragonborn": "https://i.pinimg.com/736x/1b/2b/21/1b2b215cad3448912075b9b2852db6fe.jpg",
             "Dwarf": "https://www.gmbinder.com/images/6oHntST.png",
             "Elf": "https://149844032.v2.pressablecdn.com/wp-content/uploads/2021/04/lorracyn__the_half_elf_ranger_by_ohheyitskaylak_deesm7m-fullview.jpg",
             "Gnome": "https://i.pinimg.com/736x/05/a7/46/05a746d4d42df4a51f65154aff8e1d43.jpg",
             "Half-Elf": "https://d1vzi28wh99zvq.cloudfront.net/images/19187/352703.jpg",
-            "Half Orc": "https://www.dndbeyond.com/avatars/thumbnails/6/466/420/618/636274570630462055.png",
+            "Half-Orc": "https://www.dndbeyond.com/avatars/thumbnails/6/466/420/618/636274570630462055.png",
             "Halfling": "https://i.pinimg.com/736x/7e/62/12/7e62126c49580e19ea158bdfd61237b5.jpg",
             "Human": "https://dmingdad.com/wp-content/uploads/dungeons-and-dragons-human-fighter.png",
             "Tiefling": "https://pbs.twimg.com/media/C4HRsJJWQAI0Y8m.jpg",
         };
         setImage(classToImageMap[race]);
-    }, [race]);
+    }, [race])
 
     //Handling submitting the session - calls put method & sends the values to it
     const handleSubmit = (e) => {
@@ -97,6 +93,9 @@ const EditCharacter = () => {
             <div style={editStyle}>
                 <h3><b><u>Editing Character:</u></b> {name}</h3>
                 <form onSubmit={handleSubmit}>
+                    <div>
+                        <img src={image} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' , border: '3px solid black'}}></img>
+                    </div>
                     <div className="form-group">
                         <label>
                             <label><b><u>Edit Players Name:</u></b></label>

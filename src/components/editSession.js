@@ -70,28 +70,28 @@ const EditSession = () => {
                 <h3><b><u>Editing Session:</u></b> {title}</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Edit Session Title: </label>
+                        <label><b><u>Edit Session Title:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={title}
                             onChange={(e) => { setTitle(e.target.value) }} />
                     </div>
                     <div className="form-group">
-                        <label>Edit Session Campaign: </label>
+                        <label><b><u>Edit Session Campaign:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={campaign}
                             onChange={(e) => { setCampaign(e.target.value) }} />
                     </div>
                     <div className="form-group">
-                        <label>Edit Session information: </label>
+                        <label><b><u>Edit Session information:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={information}
                             onChange={(e) => { setInformation(e.target.value) }} />
                     </div>
                     <div className="form-group">
-                        <label>Edit Session Logo: </label>
+                        <label><b><u>Edit Session Logo:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={logo}

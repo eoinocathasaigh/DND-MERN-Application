@@ -11,27 +11,27 @@ const AddCharacter = () => {
     const [playerClass, setClass] = useState('');
     const [level, setLevel] = useState('');
     const [image, setImage] = useState('');
-    const [availableRaces, setAvailableRaces] = useState([]); 
-    const [availableClasses, setAvailableClasses] = useState([]); 
+    const [availableRaces, setAvailableRaces] = useState([]);
+    const [availableClasses, setAvailableClasses] = useState([]);
     const navigate = useNavigate();
 
     //Styling this page
     const bodyStyle = {
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
-        height: '90vh', 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '90vh',
         overflow: 'auto'
     };
 
     const addStyle = {
-        backgroundColor: 'lightblue', 
-        border: '4px solid black', 
-        borderRadius: '10px', 
-        padding: '20px', 
-        maxWidth: '350px', 
-        margin: '20px auto', 
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', 
+        backgroundColor: 'lightblue',
+        border: '4px solid black',
+        borderRadius: '10px',
+        padding: '20px',
+        maxWidth: '350px',
+        margin: '20px auto',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     };
 
     //Fetch options for races and classes from the database
@@ -42,17 +42,14 @@ const AddCharacter = () => {
                 setAvailableClasses(res.data.classes);
             })
             .catch((error) => console.error('Error fetching options:', error));
-    }, []);
 
-    //Method for setting the image for the characters selected race
-    useEffect(() => {
         const raceToImage = {
             "Dragonborn": "https://i.pinimg.com/736x/1b/2b/21/1b2b215cad3448912075b9b2852db6fe.jpg",
             "Dwarf": "https://www.gmbinder.com/images/6oHntST.png",
             "Elf": "https://149844032.v2.pressablecdn.com/wp-content/uploads/2021/04/lorracyn__the_half_elf_ranger_by_ohheyitskaylak_deesm7m-fullview.jpg",
             "Gnome": "https://i.pinimg.com/736x/05/a7/46/05a746d4d42df4a51f65154aff8e1d43.jpg",
             "Half-Elf": "https://d1vzi28wh99zvq.cloudfront.net/images/19187/352703.jpg",
-            "Half Orc": "https://www.dndbeyond.com/avatars/thumbnails/6/466/420/618/636274570630462055.png",
+            "Half-Orc": "https://www.dndbeyond.com/avatars/thumbnails/6/466/420/618/636274570630462055.png",
             "Halfling": "https://i.pinimg.com/736x/7e/62/12/7e62126c49580e19ea158bdfd61237b5.jpg",
             "Human": "https://dmingdad.com/wp-content/uploads/dungeons-and-dragons-human-fighter.png",
             "Tiefling": "https://pbs.twimg.com/media/C4HRsJJWQAI0Y8m.jpg",

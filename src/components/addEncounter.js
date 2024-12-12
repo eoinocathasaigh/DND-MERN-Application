@@ -13,6 +13,7 @@ const AddEncounter = () => {
   const navigate = useNavigate();
 
   //Styling the page
+  //Main Body
   const bodyStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
@@ -21,6 +22,7 @@ const AddEncounter = () => {
     overflow: 'auto'
   };
 
+  //Style for main addition section
   const addStyle = {
     backgroundColor: 'lightblue', 
     border: '4px solid black', 
@@ -30,6 +32,7 @@ const AddEncounter = () => {
     margin: '20px auto',
   }
 
+  //Style for section displaying fighters
   const fighterStyle = {
     backgroundColor: 'white',
     border: '4px solid black',
@@ -47,6 +50,7 @@ const AddEncounter = () => {
     setInitiative('');
   };
 
+  //Handling submitting or completing this encounter
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:4000/api/encounters', { name, fighters })
@@ -69,11 +73,11 @@ const AddEncounter = () => {
       </div>
       <form onSubmit={handleSubmit} style={addStyle}>
         <div>
-          <label><b>Name:</b></label><br/>
+          <label><b><u>Name:</u></b></label><br/>
           <input value={name} onChange={(e) => setName(e.target.value)} required /><br/>
         </div>
         <div>
-          <label><b>Fighter Type:</b></label><br/>
+          <label><b><u>Fighter Type:</u></b></label><br/>
           <input value={type} onChange={(e) => setType(e.target.value)} /><br/>
           <label><b>HP:</b></label><br/>
           <input value={hp} type="number" onChange={(e) => setHp(e.target.value)} /><br/>
@@ -82,8 +86,9 @@ const AddEncounter = () => {
           <button type="button" onClick={addFighter}><b>Add Fighter</b></button>
         </div>
         <div style={fighterStyle}>
-          <h3>Fighters:</h3>
+          <h3><b><u>Fighters:</u></b></h3>
           <ul>
+            {/*Listing out each fighter for this encounter*/}
             {fighters.map((fighter, index) => (
               <li key={index}>{fighter.type} - HP: {fighter.hp}, Initiative: {fighter.initiative}</li>
             ))}

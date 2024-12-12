@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import backgroundImage from '../images/SessionBackground.jpg'
 
 const CreateSession = () => {
-    //We do everything in this class thanks to Axios
-    //Allows us to handle http requests & responses
-    //Axios allows us to send asynchronous http requests(get, post)
-    //Sends them to endpoints to handle responses
+    //Setting variables for this class & setting up the methods to get them
     const [title, setTitle] = useState('');
     const [campaign, setCampaign] = useState('');
     const [information, setInformation] = useState('');
@@ -43,6 +40,7 @@ const CreateSession = () => {
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err.data));
 
+        //Automatically navigating the user back to the sessions page when theyre done
         navigate('/Sessions');
     }
     return (
@@ -61,7 +59,7 @@ const CreateSession = () => {
                 {/*Getting the title for the session and saving it to the server*/}
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Add a Session Title: </label>
+                        <label><b><u>Add a Session Title:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={title}
@@ -71,7 +69,7 @@ const CreateSession = () => {
                 {/*Getting the relevant capaign for the session and saving it to the server*/}
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Add a campaign for the session: </label>
+                        <label><b><u>Add a campaign for the session:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={campaign}
@@ -81,7 +79,7 @@ const CreateSession = () => {
                 {/*Getting the information for the session and saving it to the server*/}
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Add the sessions information: </label>
+                        <label><b><u>Add the sessions information:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={information}
@@ -91,7 +89,7 @@ const CreateSession = () => {
                 {/*Getting the logo for the relevant session*/}
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Add the sessions logo: </label>
+                        <label><b><u>Add the sessions logo:</u></b> </label>
                         <input type="text"
                             className="form-control"
                             value={logo}
