@@ -16,6 +16,7 @@ const AddCharacter = () => {
     const navigate = useNavigate();
 
     //Styling this page
+    //Styling for the main body
     const bodyStyle = {
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -24,6 +25,7 @@ const AddCharacter = () => {
         overflow: 'auto'
     };
 
+    //Styling for other specific components
     const addStyle = {
         backgroundColor: 'lightblue',
         border: '4px solid black',
@@ -42,7 +44,10 @@ const AddCharacter = () => {
                 setAvailableClasses(res.data.classes);
             })
             .catch((error) => console.error('Error fetching options:', error));
+    }, [race]);
 
+    //Setting the image for this specific character
+    useEffect(() => {
         const raceToImage = {
             "Dragonborn": "https://i.pinimg.com/736x/1b/2b/21/1b2b215cad3448912075b9b2852db6fe.jpg",
             "Dwarf": "https://www.gmbinder.com/images/6oHntST.png",
@@ -54,8 +59,8 @@ const AddCharacter = () => {
             "Human": "https://dmingdad.com/wp-content/uploads/dungeons-and-dragons-human-fighter.png",
             "Tiefling": "https://pbs.twimg.com/media/C4HRsJJWQAI0Y8m.jpg",
         };
-        setImage(raceToImage[race]); // Default to an empty string if no mapping
-    }, [race]);
+        setImage(raceToImage[race]);
+    }, [race])
 
     //Saving the created character
     const handleSubmit = (e) => {
@@ -86,6 +91,9 @@ const AddCharacter = () => {
             </div>
             <div style={addStyle}>
                 <form onSubmit={handleSubmit}>
+                    <div>
+                        <img src={image} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', border: '3px solid black' }}></img>
+                    </div>
                     <div className="form-group">
                         <label>
                             <label ><b><u>Enter Players name:</u></b> </label>

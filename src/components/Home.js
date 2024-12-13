@@ -5,6 +5,7 @@ import '../App.css';
 //This is a basic home component meant to act as the homepage - default view for the user
 const Home = () => {
   return (
+    //Mainly provides a brief explanation of the project & its functionalities to the user
     <div>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

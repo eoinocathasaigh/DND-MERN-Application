@@ -10,6 +10,7 @@ const CharacterCreator = () => {
   const [character, setCharacter] = useState([]);
 
   //Styling this page
+  //Main Body Style
   const bodyStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
@@ -18,6 +19,7 @@ const CharacterCreator = () => {
     overflow: 'auto'
   };
 
+  //Specific elements styling
   const headerStyle = {
     backgroundColor: 'lightblue',
     border: '4px solid black', 

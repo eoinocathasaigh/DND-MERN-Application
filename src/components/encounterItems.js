@@ -17,7 +17,7 @@ const EncounterItems = (props) => {
 
     useEffect(() => {
         console.log("Character Details: ", props.myEncounter);
-    }, [props.myEncounter]); // Only run this effect when the session prop changes
+    }, [props.myEncounter]); // Only run this effect when the encounter prop changes
 
     const handleDelete = (e) => {
         e.preventDefault();//Stops it from being called multiple times

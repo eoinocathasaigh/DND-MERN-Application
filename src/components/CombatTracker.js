@@ -25,6 +25,7 @@ const CombatTracker = () => {
     margin: '20px auto', 
   }
 
+  //Method for reloading after a new encounter has been created
   const Reload = () => {
     axios.get('http://localhost:4000/api/CombatTracker')
       .then((response) => {

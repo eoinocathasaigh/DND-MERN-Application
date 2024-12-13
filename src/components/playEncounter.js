@@ -80,6 +80,7 @@ const PlayEncounter = () => {
   //Sort fighters by initiative (highest to lowest)
   const sortedFighters = fighters.sort((a, b) => b.initiative - a.initiative);
 
+  //Returning an appropriate interface for playing the encounter while still maintaining the functionality of adding a new fighter
   return (
     <div style={bodyStyle}>
       <div style={playStyle}>

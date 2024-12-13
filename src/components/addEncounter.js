@@ -71,6 +71,7 @@ const AddEncounter = () => {
         <li><b>Fighter Initiative:</b> Initiative helps you keep track of who's turn it is in battle. Ordered from highest to lowest</li>
       </ul>
       </div>
+      {/*Interface allowing the user to set the aspects of this encounter, such as its name as well as the details of its fighters*/}
       <form onSubmit={handleSubmit} style={addStyle}>
         <div>
           <label><b><u>Name:</u></b></label><br/>

@@ -22,6 +22,7 @@ const EditSession = () => {
         overflow: 'auto'
     };
 
+    //Styling specific sections in editing
     const editStyle = {
         backgroundColor: 'white',
         border: '4px solid black',

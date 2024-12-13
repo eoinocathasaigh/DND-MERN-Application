@@ -55,6 +55,7 @@ const EditCharacter = () => {
             .catch((error) => console.error('Error fetching options:', error));
     }, [id]);
 
+    //Setting the image for this specific character
     useEffect(() =>{
         const classToImageMap = {
             "Dragonborn": "https://i.pinimg.com/736x/1b/2b/21/1b2b215cad3448912075b9b2852db6fe.jpg",
